@@ -10,6 +10,7 @@ class SignUpApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const SignUpScreen(),
+        '/welcome': (context) => WelcomeScreen(),
       },
     );
   }
@@ -47,6 +48,10 @@ class _SignUpFormState extends State<SignUpForm> {
   final _usernameTextController = TextEditingController();
 
   double _formProgress = 0;
+
+  void _showWelcomeScreen() {
+    Navigator.of(context).pushNamed('/welcome');
+  }
 
   @override
   Widget build(BuildContext context) {
