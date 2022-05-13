@@ -10,7 +10,7 @@ class SignUpApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const SignUpScreen(),
-        '/welcome': (context) => WelcomeScreen(),
+        '/welcome': (context) => WelcomeScreen2(),
       },
     );
   }
@@ -49,7 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   double _formProgress = 0;
 
-  void _showWelcomeScreen() {
+  void _showWelcomeScreen2() {
     Navigator.of(context).pushNamed('/welcome');
   }
 
@@ -60,7 +60,7 @@ class _SignUpFormState extends State<SignUpForm> {
         mainAxisSize: MainAxisSize.min,
         children: [
           LinearProgressIndicator(value: _formProgress),
-          Text('Sign up', style: Theme.of(context).textTheme.headline4),
+          Text('THE FORM TITLE', style: Theme.of(context).textTheme.headline4),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
@@ -88,17 +88,17 @@ class _SignUpFormState extends State<SignUpForm> {
                   (Set<MaterialState> states) {
                 return states.contains(MaterialState.disabled)
                     ? null
-                    : Colors.white;
+                    : Color.fromARGB(255, 200, 76, 76);
               }),
               backgroundColor: MaterialStateProperty.resolveWith(
                   (Set<MaterialState> states) {
                 return states.contains(MaterialState.disabled)
                     ? null
-                    : Colors.blue;
+                    : Color.fromARGB(255, 130, 209, 123);
               }),
             ),
-            onPressed: _showWelcomeScreen,
-            child: const Text('Sign up'),
+            onPressed: _showWelcomeScreen2,
+            child: const Text('poo poo'),
           ),
         ],
       ),
@@ -106,14 +106,15 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 }
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen();
+class WelcomeScreen2 extends StatelessWidget {
+  const WelcomeScreen2();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Welcome!', style: Theme.of(context).textTheme.headline2),
+        child: Text('Welcome screen 2!',
+            style: Theme.of(context).textTheme.headline2),
       ),
     );
   }
