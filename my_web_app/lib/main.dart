@@ -10,7 +10,7 @@ class SignUpApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const SignUpScreen(),
-        '/welcome': (context) => WelcomeScreen2(),
+        '/welcome': (context) => const WelcomeScreen(),
       },
     );
   }
@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: const Center(
+      body: Center(
         child: SizedBox(
           width: 400,
           child: Card(
@@ -35,9 +35,21 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-class SignUpForm extends StatefulWidget {
-  const SignUpForm();
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen();
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Welcome to my screen!',
+            style: Theme.of(context).textTheme.headline2),
+      ),
+    );
+  }
+}
+
+class SignUpForm extends StatefulWidget {
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
@@ -49,18 +61,39 @@ class _SignUpFormState extends State<SignUpForm> {
 
   double _formProgress = 0;
 
-  void _showWelcomeScreen2() {
+  void _updateFormProgress() {
+    var progress = 0.0;
+    final controllers = [
+      _firstNameTextController,
+      _lastNameTextController,
+      _usernameTextController
+    ];
+
+    for (final controller in controllers) {
+      if (controller.value.text.isNotEmpty) {
+        progress += 1 / controllers.length;
+      }
+    }
+
+    setState(() {
+      _formProgress = progress;
+    });
+  }
+
+  void _showWelcomeScreen() {
     Navigator.of(context).pushNamed('/welcome');
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      onChanged: _updateFormProgress,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           LinearProgressIndicator(value: _formProgress),
-          Text('THE FORM TITLE', style: Theme.of(context).textTheme.headline4),
+          Text('this is my form!',
+              style: Theme.of(context).textTheme.headline5),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
@@ -88,33 +121,19 @@ class _SignUpFormState extends State<SignUpForm> {
                   (Set<MaterialState> states) {
                 return states.contains(MaterialState.disabled)
                     ? null
-                    : Color.fromARGB(255, 200, 76, 76);
+                    : Colors.white;
               }),
               backgroundColor: MaterialStateProperty.resolveWith(
                   (Set<MaterialState> states) {
                 return states.contains(MaterialState.disabled)
                     ? null
-                    : Color.fromARGB(255, 130, 209, 123);
+                    : Colors.blue;
               }),
             ),
-            onPressed: _showWelcomeScreen2,
-            child: const Text('poo poo'),
+            onPressed: _formProgress == 1 ? _showWelcomeScreen : null,
+            child: const Text('ooooh, clicky!'),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class WelcomeScreen2 extends StatelessWidget {
-  const WelcomeScreen2();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Welcome screen 2!',
-            style: Theme.of(context).textTheme.headline2),
       ),
     );
   }
