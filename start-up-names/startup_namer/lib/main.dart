@@ -5,27 +5,29 @@ void main() {
   runApp(const MyApp());
 }
 
-// #docregion MyApp
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // #docregion build
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Startup Names',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Startup Names'),
-        ),
-        body: const Center(
-          child: RandomWords(),
+            debugShowCheckedModeBanner: false,
+
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
         ),
       ),
+
+      home: const RandomWords(),
     );
   }
-  // #enddocregion build
+
 }
-// #enddocregion MyApp
+
 
 
