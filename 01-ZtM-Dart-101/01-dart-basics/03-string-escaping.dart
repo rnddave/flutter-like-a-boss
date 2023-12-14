@@ -1,4 +1,5 @@
 // we need to guess output of following based on string escaping:
+//
 
 void main() {
   int a = 10;
