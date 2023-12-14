@@ -15,3 +15,11 @@ Then, print the result. The output of this program should be:
 
 Bonus: the converted temperature in celsius should show at most 1 fractional digit.
 */
+
+void main() {
+  double tempFarenheit = 86;
+
+  double convertToCelsius = (tempFarenheit - 32) / 1.8;
+
+  print('${tempFarenheit}F = ${convertToCelsius.round()}C'); // 86.0F = 30C
+}
