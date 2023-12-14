@@ -14,7 +14,7 @@ void main() {
   I like pizza and pasta */
 
   print('The temperature is ${temperature}C');
-  print('$value plus $value makes ${value * value}');
+  print('$value plus $value makes ${value + value}');
   print('I like $pizza and $pasta');
 
   /*
@@ -27,7 +27,7 @@ void main() {
   */
 
   print('The temperature is ${temperature.round()}C');
-  print('$value plus $value makes ${value * value}');
+  print('$value plus $value makes ${value + value}');
   print('I like $pizza and $pasta');
 
   /*
