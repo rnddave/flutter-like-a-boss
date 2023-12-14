@@ -8,5 +8,5 @@ void main() {
   }
   print('My name is ' +
       name +
-      ' I am $age'); // needed the $ for string interpolation
+      ' I am $age'); // the + = concatination AND I needed the $ for string interpolation
 }
