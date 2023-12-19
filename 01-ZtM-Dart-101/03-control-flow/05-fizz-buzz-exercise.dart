@@ -16,13 +16,12 @@ Hint: you'll need to use the integer modulo operator (%) and the logical AND ope
 
 void main () {
 
-
-  for ( i = 1; i <= 15; i ++) {
-    if (i % 3 && % 5) {
+  for (var i = 1; i <= 15; i ++) {
+    if (i % 3 == 0 && i % 5 == 0) {
       print('fizz buzz');
-    } else if (i % 3) {
+    } else if (i % 3 == 0 ) {
       print ('fizz');
-    } else if (i % 5) {
+    } else if (i % 5 == 0 ) {
       print('buzz');
     } else {
       print(i);
