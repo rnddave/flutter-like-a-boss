@@ -32,3 +32,10 @@ LISTS:
 - - can NOT add elements
 - - can NOT removee elements
 - - can NOT replace entire list
+
+---
+
+SETS vs LISTS 
+
+Similar, however, a List can contain the same item more than once, a Set can only contain unique items. 
+
