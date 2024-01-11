@@ -47,3 +47,44 @@ This is what it means for null-safety - we catch these potential obscure errors 
 ## Flow Analysis: Promotion 
 
 - Dart is clever enough to see if the null check is in a conditional expression
+
+
+## Assertion Operator (!)
+
+    void main() {
+        int x = 42;
+        int? maybeValue;    // null data type 
+
+        if (x > 0) {
+            maybeValue = x;
+        } 
+
+        int value = maybeValue; 
+        print(value);   // COMPILE error = type int? can't be assigned to a type int
+    }
+
+COMPILE error = type int? can't be assigned to a type int
+
+so we can make this change >> 
+
+
+    void main() {
+        int x = 42;
+        int? maybeValue;    // null data type 
+
+        if (x > 0) {
+            maybeValue = x;
+        } 
+
+        int value = maybeValue!;    // added the assertion (!) operator to this line 
+        print(value);   // no compile error
+    }
+
+This is the programmers flex - ** I know what I am doing! **
+
+The problem with this is that in this case, it will run and produce 42 at console
+
+However, if the int x had been a negative number, then it would have still compiled (programmers flex (I know more than dart)), but it would have failed at runtime as the [int? maybevalue] variable is still set to the null datatype. 
+
+// ERROR: NoSuchMethodError: '<Unexpected Null Value>'
+
