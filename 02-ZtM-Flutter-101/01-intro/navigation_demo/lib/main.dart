@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_demo/pages/first.dart';
 import 'package:navigation_demo/pages/second.dart';
+import 'package:navigation_demo/pages/third.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/third':(context) => const ThirdPage(),
+      },
     );
   }
 }
@@ -33,7 +37,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,20 +48,28 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextButton(onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => FirstPage()),
-                );
-            }, child: const Text('First Page')),
-            TextButton(onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SecondPage()),
-                );
-            }, child: const Text('Second Page')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => FirstPage()),
+                  );
+                },
+                child: const Text('First Page')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => SecondPage()),
+                  );
+                },
+                child: const Text('Second Page')),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/third');
+                },
+                child: const Text('Third Page')),
           ],
         ),
       ),
-
     );
   }
 }
