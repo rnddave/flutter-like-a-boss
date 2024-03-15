@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
       routes: {
-        '/third':(context) => const ThirdPage(),
+        '/third':(context) => ThirdPage(),
       },
     );
   }
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text('Second Page')),
             TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/third');
+                  Navigator.pushNamed(context, '/third', arguments: "David via NamedRoute");
                 },
                 child: const Text('Third Page')),
           ],
