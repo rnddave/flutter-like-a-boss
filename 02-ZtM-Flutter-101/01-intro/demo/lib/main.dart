@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'David built this Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Settings'),
     );
   }
 }
@@ -28,56 +30,59 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+  
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      
-      _counter++;
-    });
-  }
+  bool value = false;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
-        
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        
         title: Text(widget.title),
       ),
       body: Center(
-        
         child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          children: [
+            const Image(
+              image: NetworkImage('https://picsum.photos/200/200'),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            const SizedBox(
+              height: 20,
             ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Username',
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Notifications'),
+                Switch(
+                  value: value,
+                  onChanged: (newValue) {
+                    setState(() {
+                      value = newValue;
+                    });
+                  }
+                ),
+              ],
+            ),
+            ElevatedButton( 
+              child: const Text('save'),
+              onPressed: (){},
+              )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(9.0),
-        ),
-        
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-        
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
     );
   }
 }
