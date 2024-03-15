@@ -51,14 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FirstPage()),
+                    MaterialPageRoute(builder: (context) => const FirstPage(name: 'David')),
                   );
                 },
                 child: const Text('First Page')),
             TextButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SecondPage()),
+                    MaterialPageRoute(builder: (context) => const SecondPage()),
                   );
                 },
                 child: const Text('Second Page')),
