@@ -31,6 +31,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _signInKey = GlobalKey();
+  final RegExp emailValid =
+      RegExp(r"^[a-zA-Z0-9_\-\+\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z]+");
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +43,40 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Form(
+        key: _signInKey,
         child: Column(
           children: <Widget>[
             TextFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(hintText: 'Enter your email'),
-            ), // email
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(hintText: 'Email Address'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter an email address';
+                  } else if (!emailValid.hasMatch(value)) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                }),
             TextFormField(
               controller: _passwordController,
               obscureText: true,
-              decoration: const InputDecoration(hintText: 'Enter your password'),
-            ), // password
+              decoration: const InputDecoration(hintText: 'Password'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a password';
+                } else if (value.length < 6) {
+                  return 'Password must be at least 6 characters';
+                }
+                return null;
+              },
+            ),
             ElevatedButton(
                 onPressed: () {
-                  debugPrint('Email: ${_emailController.text}');
-                  debugPrint('Password: ${_passwordController.text}');
+                  if (_signInKey.currentState!.validate()) {
+                    debugPrint('Email: ${_emailController.text}');
+                    debugPrint('Password: ${_passwordController.text}');
+                  }
                 },
                 child: const Text('Submit')),
           ],
