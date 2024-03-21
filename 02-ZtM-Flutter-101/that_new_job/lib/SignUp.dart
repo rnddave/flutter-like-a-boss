@@ -1,35 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:that_new_job/SignUp.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TNJ',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'TNJ'),
-    );
-  }
+  State<SignUp> createState() => _SignUpState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _signInKey = GlobalKey();
@@ -44,14 +22,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Image(image: AssetImage('assets/tnj-logo.png'), width: 100,),
             const Text(
-              'Log in to TNJ',
+              'Sign up to TNJ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(15, 40, 15, 0),
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(20)),
@@ -108,16 +85,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       debugPrint('Password: ${_passwordController.text}');
                     }
                   },
-                  child: const Text('Log In',
+                  child: const Text('Sign Up',
                       style: TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold))),
             ),
             TextButton(
                 onPressed: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const SignUp()));
+                      .pop();
                 },
-                child: const Text('Don\'t have an account? Sign up here'))
+                child: const Text('Already have an account, Login here'))
           ],
         ),
       ),
