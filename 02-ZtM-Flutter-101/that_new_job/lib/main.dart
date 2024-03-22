@@ -44,7 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Image(image: AssetImage('assets/tnj-logo.png'), width: 100,),
+            const Image(image: AssetImage('assets/tnj-logo-removebg.png'), width: 200,),
+            SizedBox(height: 20,),
             const Text(
               'Log in to TNJ',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
