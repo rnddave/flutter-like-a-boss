@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'TNJ'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -118,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => const SignUp()));
                 },
-                child: const Text('Don\'t have an account? Sign up here'))
+                child: const Text('Don\'t have an account? Sign up here')),
           ],
         ),
       ),
